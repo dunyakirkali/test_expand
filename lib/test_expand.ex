@@ -1,18 +1,11 @@
 defmodule TestExpand do
-  @moduledoc """
-  Documentation for `TestExpand`.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> TestExpand.hello()
-      :world
-
-  """
   def hello do
-    :world
+    {result, _} =
+      String.__info__(:functions)
+      |> Expand.it()
+      |> Code.eval_string()
+
+    result
+    |> Keyword.keys()
   end
 end
